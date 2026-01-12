@@ -4,7 +4,7 @@ services:
   db:
     image: postgres:15
     volumes:
-      - postgres_/var/lib/postgresql/data/
+      - postgres_data:/var/lib/postgresql/data/
     environment:
       POSTGRES_DB: ${DB_NAME}
       POSTGRES_USER: ${DB_USER}
@@ -17,7 +17,7 @@ services:
     command: >
       sh -c "python manage.py migrate --noinput &&
              python manage.py collectstatic --noinput &&
-             gunicorn --bind 0.0.0.0:8000 repair_site.wsgi:application"
+             gunicorn --bind 0.0.0.0:8000 config.wsgi:application"
     volumes:
       - .:/app
     ports:
@@ -28,7 +28,7 @@ services:
       - DB_NAME=${DB_NAME}
       - DB_USER=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
-      - DB_HOST=db
+      - DB_HOST=localhost
       - DB_PORT=5432
     depends_on:
       - db
@@ -36,7 +36,7 @@ services:
       - etaji_network
 
 volumes:
-  postgres_
+  postgres_data:  # ← вот так правильно: имя + двоеточие
 
 networks:
   etaji_network:
