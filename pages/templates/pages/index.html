@@ -3,89 +3,84 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Этажи.Ремонт — ремонт квартир под ключ</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: Arial, sans-serif; scroll-behavior: smooth; }
-    section { min-height: 100vh; padding: 60px 20px; }
-    .container { max-width: 1200px; margin: 0 auto; }
-
-    /* Верхняя часть — про компанию */
-    #hero {
-      background: #f9f9f9;
-      text-align: center;
-    }
-    .packages { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; margin: 40px 0; }
-    .package { border: 1px solid #ddd; padding: 20px; width: 300px; border-radius: 8px; }
-
-    /* Карусель */
-    .carousel { position: relative; max-width: 800px; margin: 30px auto; overflow: hidden; border-radius: 10px; }
-    .carousel-inner { display: flex; transition: transform 0.5s ease-in-out; }
-    .carousel-item { min-width: 100%; }
-    .carousel-item img { width: 100%; height: auto; display: block; }
-
-    /* Калькулятор + форма */
-    #calculator-section {
-      background: #fff;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 40px;
-      align-items: flex-start;
-    }
-    .form-group, .calc-group { flex: 1; min-width: 300px; }
-    input, select, button { width: 100%; padding: 10px; margin: 8px 0; }
-    .result { font-size: 1.2em; font-weight: bold; margin-top: 10px; }
-
-    /* Кнопка "Оставить заявку" внизу hero */
-    .scroll-btn {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 10px 20px;
-      background: #007bff;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-    }
-  </style>
+  <title>Этажи.Ремонт — честный ремонт квартир под ключ</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
 
   <!-- Секция 1: О компании -->
   <section id="hero">
-    <div class="container">
-      <h1>Этажи.Ремонт</h1>
-      <p>Ремонт квартир под ключ в Москве и области. Гарантия 12 месяцев.</p>
+    <div class="container fade-in">
+      <h1>Ремонт от «Этажи.Ремонт»: честно, точно, без сюрпризов</h1>
+      <p>
+        Вы заранее знаете итоговую стоимость. Гарантия 1 год. 
+        Если нарушим сроки — заплатим неустойку. 
+        Материалы закупаем и доставляем сами.
+      </p>
 
       <a href="#calculator-section" class="scroll-btn">Оставить заявку</a>
 
-      <h2>Наши пакеты</h2>
-      <div class="packages">
-        <div class="package"><strong>Эконом</strong><br>от 15 000 ₽/м²<br>Базовые материалы, чистовая отделка</div>
-        <div class="package"><strong>Комфорт</strong><br>от 22 000 ₽/м²<br>Улучшенные материалы, дизайн-проект в подарок</div>
-        <div class="package"><strong>Премиум</strong><br>от 35 000 ₽/м²<br>Индивидуальный дизайн, авторский надзор</div>
-      </div>
-
-      <h2>Примеры наших работ</h2>
-      <div class="carousel">
-        <div class="carousel-inner" id="carousel">
-          <div class="carousel-item"><img src="https://via.placeholder.com/800x500?text=Работа+1" alt="Работа 1"></div>
-          <div class="carousel-item"><img src="https://via.placeholder.com/800x500?text=Работа+2" alt="Работа 2"></div>
-          <div class="carousel-item"><img src="https://via.placeholder.com/800x500?text=Работа+3" alt="Работа 3"></div>
+      <div class="fade-in">
+        <h2>Наши пакеты ремонта</h2>
+        <div class="packages">
+          <div class="package">
+            <h3>Эконом</h3>
+            <div class="price">от 15 000 ₽/м²</div>
+            <p>Базовые материалы, чистовая отделка, фиксированная смета.</p>
+          </div>
+          <div class="package">
+            <h3>Комфорт</h3>
+            <div class="price">от 22 000 ₽/м²</div>
+            <p>Дизайн-проект в подарок, улучшенные материалы, гарантия 1 год.</p>
+          </div>
+          <div class="package">
+            <h3>Премиум</h3>
+            <div class="price">от 35 000 ₽/м²</div>
+            <p>Индивидуальный дизайн, авторский надзор, материалы премиум-класса.</p>
+          </div>
         </div>
       </div>
-      <button onclick="prevSlide()">❮</button>
-      <button onclick="nextSlide()">❯</button>
+
+      <div class="fade-in">
+        <h2>Почему выбирают нас</h2>
+        <ul class="usp-list">
+          <li>✅ Вы заранее знаете, сколько будет стоить весь ремонт</li>
+          <li>✅ Делаем детальный расчёт сметы — никаких скрытых платежей</li>
+          <li>✅ Даём 1 год гарантии на ремонт (всего 2 случая за всю историю)</li>
+          <li>✅ Если что-то пойдёт не так — выплатим неустойку по договору</li>
+          <li>✅ Закупаем и доставляем материалы до объекта</li>
+          <li>✅ Если что-то останется — пересчитаем смету и вернём деньги</li>
+          <li>✅ Рассрочка, поэтапная оплата или кредит — гибкие условия</li>
+          <li>✅ Все условия зафиксированы в договоре: сроки, обязательства, санкции</li>
+        </ul>
+      </div>
+
+      <div class="fade-in">
+        <h2>Примеры наших работ</h2>
+        <div class="carousel">
+          <div class="carousel-inner" id="carousel">
+            <div class="carousel-item"><img src="https://via.placeholder.com/800x450?text=Работа+1" alt="Ремонт квартиры 1"></div>
+            <div class="carousel-item"><img src="https://via.placeholder.com/800x450?text=Работа+2" alt="Ремонт квартиры 2"></div>
+            <div class="carousel-item"><img src="https://via.placeholder.com/800x450?text=Работа+3" alt="Ремонт квартиры 3"></div>
+          </div>
+          <div class="carousel-controls">
+            <button onclick="prevSlide()">❮</button>
+            <button onclick="nextSlide()">❯</button>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Секция 2: Форма + калькулятор -->
-  <section id="calculator-section">
+  <section id="calculator-section" class="fade-in">
     <div class="container">
       <div class="form-group">
         <h2>Оставьте заявку</h2>
         <input type="text" id="name" placeholder="Ваше имя" required>
         <input type="tel" id="phone" placeholder="Телефон" required>
-        <select id="package-select">
+        <select id="package-select" required>
           <option value="">Выберите пакет</option>
           <option value="econom">Эконом</option>
           <option value="comfort">Комфорт</option>
@@ -95,23 +90,5 @@
         <div id="form-result"></div>
       </div>
 
-      <div class="calc-group">
-        <h2>Калькулятор ремонта</h2>
-        <label>Площадь квартиры (м²):</label>
-        <input type="number" id="area" min="20" value="50" oninput="calculate()">
-        <label>Пакет ремонта:</label>
-        <select id="calc-package" onchange="calculate()">
-          <option value="15000">Эконом — от 15 000 ₽/м²</option>
-          <option value="22000" selected>Комфорт — от 22 000 ₽/м²</option>
-          <option value="35000">Премиум — от 35 000 ₽/м²</option>
-        </select>
-        <div class="result">Итого: <span id="total">1 100 000</span> ₽</div>
-        <small>* Расчёт ориентировочный. Точную стоимость уточнит замерщик.</small>
-      </div>
-    </div>
-  </section>
-
-  <!-- Подключаем JS -->
-  <script src="/static/js/main.js"></script>
-</body>
-</html>
+      <div
+      
