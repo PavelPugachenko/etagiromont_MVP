@@ -14,7 +14,6 @@ def submit_form(request):
             phone = data.get("phone")
             package = data.get("package")
 
-            # Сохраняем в базу
             RepairRequest.objects.create(
                 name=name,
                 phone=phone,
