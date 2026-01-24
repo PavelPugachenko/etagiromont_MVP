@@ -76,7 +76,7 @@ section {
 .fade-in {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
 .fade-in.appear {
@@ -150,7 +150,7 @@ section {
 /* Карусель */
 .carousel {
   position: relative;
-  max-width: 800px;
+  max-width: 1300px;
   margin: 40px auto;
   overflow: hidden;
   border-radius: 16px;
@@ -205,14 +205,14 @@ section {
 
 /* Калькулятор + форма */
 #calculator-section {
-  background: #ffffff;
+  background:  rgba(255, 255, 255, 0.5);
   display: flex;
   flex-wrap: wrap;
   gap: 50px;
   align-items: flex-start;
   padding: 70px 20px;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
 }
 
