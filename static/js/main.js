@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
       currentIndex = (currentIndex + 1) % bgImages.length;
     }
     changeBackground();
-    setInterval(changeBackground, 8000);
+    setInterval(changeBackground, 7000);
   }
 
   // === Анимация появления ===
@@ -65,10 +65,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultDiv = document.getElementById('form-result');
     if (name && phone) {
       resultDiv.textContent = 'Спасибо! Мы скоро свяжемся с вами.';
-      resultDiv.style.color = '#5e5446';
+      resultDiv.style.color = '#5a4e40';
     } else {
       resultDiv.textContent = 'Пожалуйста, заполните все поля.';
-      resultDiv.style.color = '#d32f2f';
+      resultDiv.style.color = 'red';
     }
   };
 
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const backToTopButton = document.getElementById('back-to-top');
   if (backToTopButton) {
     const toggleButton = () => {
-      backToTopButton.classList.toggle('show', window.scrollY > 400);
+      backToTopButton.style.display = window.scrollY > 300 ? 'block' : 'none';
     };
     window.addEventListener('scroll', toggleButton);
     backToTopButton.addEventListener('click', () => {
@@ -85,6 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleButton();
   }
 
-  // Запуск калькулятора
-  if (document.getElementById('area')) calculate();
+  // Запустить калькулятор
+  if (document.getElementById('area')) {
+    calculate();
+  }
 });
