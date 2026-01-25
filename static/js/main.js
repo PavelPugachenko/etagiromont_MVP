@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // === Динамический фон ===
+  // Динамический фон
   const bgImages = [
     "/static/images/bg1.jpg",
     "/static/images/bg2.jpg",
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(changeBackground, 7000);
   }
 
-  // === Анимация появления ===
+  // Анимация появления
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(el);
   });
 
-  // === Карусель ===
+  // Карусель
   let currentSlide = 0;
   const slides = document.querySelectorAll('.carousel-item');
   if (slides.length > 0) {
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     showSlide(currentSlide);
   }
 
-  // === Калькулятор ===
+  // Калькулятор
   window.calculate = () => {
     const area = parseFloat(document.getElementById('area').value) || 0;
     const pricePerSqm = parseFloat(document.getElementById('calc-package').value) || 0;
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('total').textContent = total.toLocaleString('ru-RU');
   };
 
-  // === Форма ===
+  // Форма
   window.submitForm = () => {
     const name = document.getElementById('name').value;
     const phone = document.getElementById('phone').value;
@@ -72,11 +72,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // === Кнопка "Наверх" ===
+  // Кнопка "Наверх"
   const backToTopButton = document.getElementById('back-to-top');
   if (backToTopButton) {
     const toggleButton = () => {
-      backToTopButton.style.display = window.scrollY > 300 ? 'block' : 'none';
+      backToTopButton.classList.toggle('show', window.scrollY > 400);
     };
     window.addEventListener('scroll', toggleButton);
     backToTopButton.addEventListener('click', () => {
@@ -85,8 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleButton();
   }
 
-  // Запустить калькулятор
-  if (document.getElementById('area')) {
-    calculate();
-  }
+  // Запуск калькулятора
+  if (document.getElementById('area')) calculate();
 });

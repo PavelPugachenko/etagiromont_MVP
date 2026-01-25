@@ -11,17 +11,16 @@
   <!-- Динамический фон -->
   <div id="dynamic-bg"></div>
 
-  <!-- Секция 1: О компании -->
-  <section id="hero">
-    <div class="container fade-in">
-      <h1>ЭТАЖИ РЕМОНТ</h1>
-      <p>
-        Вы заранее знаете итоговую стоимость. 
-        Гарантия 12 месяцев. 
-        Материалы закупаем и доставляем сами.
-      </p>
+  <!-- Шапка: логотип справа, кнопка слева -->
+  <header class="site-header">
+    <a href="#calculator-section" class="header-btn">Оставить заявку</a>
+    <img src="{% static 'images/logo1.png' %}" alt="Этажи.Ремонт" class="header-logo">
+  </header>
 
-      <a href="#calculator-section" class="scroll-btn">Оставить заявку</a>
+  <!-- Секция 1: О компании -->
+  <section id="hero" class="fade-in">
+    <div class="container">
+      <p>Вы заранее знаете итоговую стоимость. Гарантия 12 месяцев. Материалы закупаем и доставляем сами.</p>
 
       <div class="fade-in">
         <h2>Наши пакеты ремонта</h2>
@@ -44,7 +43,7 @@
           <div class="package">
             <h3>Санузел под ключ</h3>
             <div class="price">от 250 000 ₽</div>
-            <p>Ремонт сан узла под ключ с полной комплектовкой всеми материалами и сантехникой</p>
+            <p>Ремонт санузла под ключ с полной комплектацией материалов и сантехники.</p>
           </div>
         </div>
       </div>
@@ -52,10 +51,10 @@
       <div class="fade-in">
         <h2>Примеры наших работ</h2>
         <div class="carousel">
-          <div class="carousel-inner" id="carousel">
-            <div class="carousel-item"><img src="{% static 'images/BORL8992-HDR.jpg' %}" alt="Пожарных и спасателей"><div class="caption">Пожарных и спасателей, 3-комнатная, 109 м²</div></div>
-            <div class="carousel-item"><img src="{% static 'images/BORL9084-HDR.jpg' %}" alt="Пожарных и спасателей"><div class="caption">Пожарных и спасателей, 3-комнатная, 109 м²</div></div>
-            <div class="carousel-item"><img src="{% static 'images/BORL9160-HDR.jpg' %}" alt="Пожарных и спасателей"><div class="caption">Пожарных и спасателей, 3-комнатная, 109 м²</div></div>
+          <div class="carousel-inner">
+            <div class="carousel-item"><img src="{% static 'images/BORL8992-HDR.jpg' %}" alt="Интерьер"></div>
+            <div class="carousel-item"><img src="{% static 'images/BORL9084-HDR.jpg' %}" alt="Интерьер"></div>
+            <div class="carousel-item"><img src="{% static 'images/BORL9160-HDR.jpg' %}" alt="Интерьер"></div>
           </div>
           <div class="carousel-controls">
             <button onclick="prevSlide()">❮</button>
@@ -66,9 +65,23 @@
     </div>
   </section>
 
-  <!-- Секция 2: Форма + калькулятор -->
+  <!-- Секция 2: Калькулятор + форма -->
   <section id="calculator-section" class="fade-in">
-    <div class="container">
+    <div class="container calculator-form-container">
+      <div class="calc-group">
+        <h2>Калькулятор ремонта</h2>
+        <label>Площадь квартиры (м²):</label>
+        <input type="number" id="area" min="20" value="50" oninput="calculate()">
+        <label>Пакет ремонта:</label>
+        <select id="calc-package" onchange="calculate()">
+          <option value="20000">Эконом — от 20 000 ₽/м²</option>
+          <option value="22000" selected>Комфорт — от 22 000 ₽/м²</option>
+          <option value="35000">Премиум — от 35 000 ₽/м²</option>
+        </select>
+        <div class="result">Итого: <span id="total">1 100 000</span></div>
+        <small>* Расчёт ориентировочный. Точную стоимость уточнит замерщик.</small>
+      </div>
+
       <div class="form-group">
         <h2>Оставьте заявку</h2>
         <input type="text" id="name" placeholder="Ваше имя" required>
@@ -82,50 +95,13 @@
         <button onclick="submitForm()">Отправить заявку</button>
         <div id="form-result"></div>
       </div>
-
-      <div class="calc-group">
-        <h2>Калькулятор ремонта</h2>
-        <label>Площадь квартиры (м²):</label>
-        <input type="number" id="area" min="20" value="50" oninput="calculate()">
-        <label>Пакет ремонта:</label>
-        <select id="calc-package" onchange="calculate()">
-          <option value="15000">Эконом — от 15 000 ₽/м²</option>
-          <option value="22000" selected>Комфорт — от 22 000 ₽/м²</option>
-          <option value="35000">Премиум — от 35 000 ₽/м²</option>
-        </select>
-        <div class="result">Итого: <span id="total">1 100 000</span></div>
-        <small>* Расчёт ориентировочный. Точную стоимость уточнит замерщик.</small>
-      </div>
     </div>
   </section>
 
   <!-- Кнопка "Наверх" -->
   <button id="back-to-top" title="Наверх">↑</button>
 
-  <!-- Динамический фон (JS) -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const bgImages = [
-        "{% static 'images/bg1.jpg' %}",
-        "{% static 'images/bg2.jpg' %}",
-        "{% static 'images/bg3.jpg' %}"
-      ];
-      let currentIndex = 0;
-      const bgElement = document.getElementById('dynamic-bg');
-
-      if (bgElement && bgImages.length > 0) {
-        function changeBackground() {
-          bgElement.style.backgroundImage = `url(${bgImages[currentIndex]})`;
-          currentIndex = (currentIndex + 1) % bgImages.length;
-        }
-
-        changeBackground();
-        setInterval(changeBackground, 7000);
-      }
-    });
-  </script>
-
-  <!-- Единственный вызов JS -->
+  <!-- JS -->
   <script src="{% static 'js/main.js' %}" defer></script>
 </body>
-</html>
+</html> 
